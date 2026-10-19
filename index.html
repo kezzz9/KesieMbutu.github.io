@@ -3,67 +3,246 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
+  <title>My VS Code Portfolio</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Cascadia Code, monospace;
       margin: 0;
-      background: #f4f6f9;
-      color: #222;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      font-family: "Cascadia Code", Consolas, monospace;
+    }
+
+    .topbar {
+      background: #323233;
+      padding: 12px 20px;
+      border-bottom: 1px solid #111;
+    }
+
+    .workspace {
+      display: flex;
+      min-height: calc(100vh - 76px);
+    }
+
+    .activity {
+      width: 55px;
+      background: #333333;
+      padding: 20px 10px;
       text-align: center;
+      color: #858585;
+      font-size: 22px;
     }
-    header {
-      background: #172554;
-      color: white;
-      padding: 50px 20px;
+
+    .explorer {
+      width: 220px;
+      background: #252526;
+      padding: 20px 12px;
     }
-    section {
-      padding: 25px 20px;
-      max-width: 700px;
-      margin: auto;
+
+    .explorer h3 {
+      font-size: 12px;
+      margin-top: 0;
+      color: #bbbbbb;
     }
+
+    .file {
+      padding: 9px 5px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .file:hover,
+    .file.active {
+      background: #37373d;
+    }
+
+    .editor {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .tab {
+      background: #1e1e1e;
+      border-top: 2px solid #007acc;
+      padding: 12px 18px;
+      font-size: 13px;
+    }
+
+    .content {
+      padding: 35px;
+      line-height: 1.8;
+    }
+
+    .line {
+      color: #858585;
+      margin-right: 20px;
+    }
+
+    .blue { color: #569cd6; }
+    .green { color: #6a9955; }
+    .yellow { color: #dcdcaa; }
+    .orange { color: #ce9178; }
+    .purple { color: #c586c0; }
+
     .project {
-      background: white;
-      padding: 20px;
+      border: 1px solid #454545;
+      padding: 15px;
       margin: 15px 0;
-      border-radius: 10px;
+      border-radius: 5px;
     }
-    a { color: #2563eb; }
+
+    a {
+      color: #4fc1ff;
+      text-decoration: none;
+    }
+
+    .status {
+      background: #007acc;
+      padding: 5px 12px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .explorer {
+        width: 145px;
+      }
+
+      .content {
+        padding: 15px;
+        font-size: 12px;
+      }
+
+      .activity {
+        width: 35px;
+        padding: 15px 5px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>Hello, I'm Kesie Mbutu!</h1>
-    <p>Student | Web Developer | Creative Thinker</p>
+  <header class="topbar">
+    <span>◉ My Portfolio — Visual Studio Code</span>
   </header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>I am a Dynamic and loving Computer Science, and Pastoral Ministry Major learning theology and technology and building projects to make the world better.
-       Welcome to my portfolio!</p>
-    <img src="260819 Campus Ministries Team Edited-5.jpg" alt="My profile picture" width="250">
-  </section>
+  <div class="workspace">
 
-  <section>
-    <h2>My Skills</h2>
-    <p>Phython · HTML · C++ · JavaScript · ArcGIS · DANTE · Design Thinking · Team Leadership · Problem Solving</p>
-  </section>
+    <aside class="activity">
+      <div title="Explorer">▤</div>
+      <div title="Search" style="margin-top:25px">⌕</div>
+      <div title="Projects" style="margin-top:25px">⑂</div>
+    </aside>
 
-  <section>
-    <h2>My Projects</h2>
-    <div class="project">
-      <h3>Sand Simulator</h3>
-      <p>Sand Simulator is a Graphical User Interface aplication that simulate the real conditions and movements of sand while being influenced by natural factors like gravity and Brownian motio .</p>
-      <a href="https://github.com/">View project</a>
-    </div>
-    <div class="project">
-      <h3>Rock/Papper/Scissor</h3>
-      <p>Rock/Papper/Scissor is a game that i developped twhich is a virtual version of the grand classic Rock Paper Scissor.</p>
-    </div>
-  </section>
+    <nav class="explorer">
+      <h3>EXPLORER</h3>
+      <p>▼ MY-PORTFOLIO</p>
 
-  
+      <div class="file active"
+           onclick="showPage('about')">📄 about.html</div>
+      <div class="file"
+           onclick="showPage('projects')">📁 projects.html</div>
+      <div class="file"
+           onclick="showPage('skills')">📄 skills.css</div>
+      <div class="file"
+           onclick="showPage('contact')">📄 contact.html</div>
+    </nav>
+
+    <main class="editor">
+      <div class="tab" id="tab">📄 about.html</div>
+
+      <div class="content" id="content">
+        <div><span class="line">1</span>
+          <span class="purple">&lt;h1&gt;</span>
+        </div>
+        <div><span class="line">2</span>
+          <span class="orange">Hello, World!</span>
+        </div>
+        <div><span class="line">3</span>
+          <span class="purple">&lt;/h1&gt;</span>
+        </div>
+        <br>
+        <div><span class="line">4</span>
+          <span class="green">&lt;!-- About Me --&gt;</span>
+        </div>
+        <h2 class="yellow">I'm a Student & Developer</h2>
+        <p>Welcome to my portfolio!</p>
+        <p>I enjoy coding, learning new technologies,
+          and building creative projects.</p>
+      </div>
+    </main>
+
+  </div>
+
+  <footer class="status">
+    ⎇ main &nbsp; | &nbsp; My Portfolio &nbsp; | &nbsp; HTML
+  </footer>
+
+  <script>
+    const pages = {
+      about: {
+        tab: "📄 about.html",
+        html: `
+          <div class="green">&lt;!-- About Me --&gt;</div>
+          <h2 class="yellow">Hello, World!</h2>
+          <p>I'm a student learning to code.</p>
+          <p>I build websites and explore technology.</p>
+        `
+      },
+      projects: {
+        tab: "📁 projects.html",
+        html: `
+          <div class="green">&lt;!-- My Projects --&gt;</div>
+          <h2 class="yellow">My Projects</h2>
+          <div class="project">
+            <h3 class="blue">01 / Portfolio Website</h3>
+            <p>My first website built with HTML and CSS.</p>
+          </div>
+          <div class="project">
+            <h3 class="blue">02 / Calculator</h3>
+            <p>A simple calculator project.</p>
+          </div>
+        `
+      },
+      skills: {
+        tab: "📄 skills.css",
+        html: `
+          <div class="green">/* My Skills */</div>
+          <p><span class="blue">HTML</span> — Learning</p>
+          <p><span class="blue">CSS</span> — Learning</p>
+          <p><span class="blue">JavaScript</span> — Exploring</p>
+        `
+      },
+      contact: {
+        tab: "📄 contact.html",
+        html: `
+          <div class="green">&lt;!-- Contact Me --&gt;</div>
+          <h2 class="yellow">Let's Connect!</h2>
+          <p>Email: your-email@example.com</p>
+          <p>GitHub: <a href="https://github.com/"
+             target="_blank" rel="noopener noreferrer">My GitHub</a></p>
+        `
+      }
+    };
+
+    function showPage(page) {
+      document.getElementById("tab").textContent =
+        pages[page].tab;
+
+      document.getElementById("content").innerHTML =
+        pages[page].html;
+
+      document.querySelectorAll(".file").forEach(file => {
+        file.classList.remove("active");
+      });
+
+      event.currentTarget.classList.add("active");
+    }
+  </script>
 
 </body>
 </html>
