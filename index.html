@@ -135,27 +135,34 @@
     .download-btn:hover {
       background: #005a9e;
     }
-    pointer-events: none;
-  opacity: 0.28;
-}
+   /* Matrix background */
+    #matrix {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.28;
+    }
 
-/* Keep your portfolio above the animation */
-.topbar,
-.workspace,
-.status {
-  position: relative;
-  z-index: 1;
-}
+    /* Keep your portfolio above the animation */
+    .topbar,
+    .workspace,
+    .status {
+      position: relative;
+      z-index: 1;
+    }
 
-/* Keep the VS Code panels readable */
-.explorer,
-.activity {
-  background-color: rgba(37, 37, 38, 0.92);
-}
+    /* Keep the VS Code panels readable */
+    .explorer,
+    .activity {
+      background-color: rgba(37, 37, 38, 0.92);
+    }
 
-.editor {
-  background-color: rgba(30, 30, 30, 0.88);
-}
+    .editor {
+      background-color: rgba(30, 30, 30, 0.88);
+    }
   </style>
 </head>
 
