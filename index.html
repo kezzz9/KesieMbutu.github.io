@@ -135,11 +135,34 @@
     .download-btn:hover {
       background: #005a9e;
     }
+    pointer-events: none;
+  opacity: 0.28;
+}
+
+/* Keep your portfolio above the animation */
+.topbar,
+.workspace,
+.status {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keep the VS Code panels readable */
+.explorer,
+.activity {
+  background-color: rgba(37, 37, 38, 0.92);
+}
+
+.editor {
+  background-color: rgba(30, 30, 30, 0.88);
+}
   </style>
 </head>
 
 <body>
 
+  <canvas id="matrix"></canvas>
+  
   <header class="topbar">
     <span>◉ My Portfolio — Visual Studio Code</span>
   </header>
@@ -280,6 +303,47 @@
 
       event.currentTarget.classList.add("active");
     }
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    const fontSize = 16;
+    let columns;
+    let drops;
+
+    function resizeMatrix() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      columns = Math.ceil(canvas.width / fontSize);
+      drops = Array(columns).fill(1);
+    }
+
+    function drawMatrix() {
+      // Fade previous characters to create the trail
+      ctx.fillStyle = "rgba(30, 30, 30, 0.08)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const digit = Math.random() > 0.5 ? "1" : "0";
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        ctx.fillStyle = "#00ff66";
+        ctx.fillText(digit, x, y);
+
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    resizeMatrix();
+    window.addEventListener("resize", resizeMatrix);
+    setInterval(drawMatrix, 50);
   </script>
 
 </body>
